@@ -33,7 +33,7 @@
     right: 0;
     bottom: 0;
     border-radius: 20px;
-    background-color: #2BE080;
+    background-color: #f1f1f1;
     -webkit-transition: 0.4s;
     -o-transition: 0.4s;
     transition: 0.4s;
@@ -48,15 +48,18 @@
     bottom: 6px;
     right: 6px;
     border-radius: 50%;
-    border: 1px solid #fff;
     box-sizing: border-box;
-    background-color: #2BE080;
+    background-color: #fff9f9;
     transition: 0.4s;
 }
 
 .filter-checkbox__input:checked + .filter-checkbox__slider:before {
     background-color: #fff;
     transform: translateX(16px);
+}
+
+.filter-checkbox__input:checked + .filter-checkbox__slider {
+    background-color: #2BE080;
 }
 
 @media screen and (max-width: 768px) {
