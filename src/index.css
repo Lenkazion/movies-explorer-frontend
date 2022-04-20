@@ -1,0 +1,12 @@
+@import url("./vendor/fonts/fonts.css");
+@import url("./vendor/normalize.css");
+
+.hover-link:hover {
+  opacity: 0.7;
+  transition: .5s linear;
+}
+
+.hover-btn:hover {
+  opacity: 0.8;
+  transition: .5s linear;
+}
