@@ -50,7 +50,8 @@
     font-weight: 500;
     font-size: 11px;
     line-height: 18px;
-    transition: opacity .25s ease-in;
+    transition: opacity .5s ease-in;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
