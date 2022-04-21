@@ -9,11 +9,6 @@ function SavedMovies({isLoading}) {
         <div className="movies">
             <SearchForm/>
             <MoviesCardList isLoading={isLoading}/>
-            <button
-                className="movies-cardlist__button"
-                type="button">
-                Ещё
-            </button>
         </div>
     );
 }
