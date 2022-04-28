@@ -14,7 +14,7 @@ import Profile from "../Profile/Profile";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import movieApi from "../../utils/MovieApi";
 import auth from "../../utils/Auth";
-import api from "../../utils/Api";
+import api from "../../utils/MainApi";
 
 const App = () => {
   const { pathname } = useLocation();
