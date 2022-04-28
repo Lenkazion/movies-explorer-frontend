@@ -1,13 +1,11 @@
 .search-form {
-	padding: 80px 5.5% 10px;
+	padding: 80px 5.5% 0px;
 }
 
 .search-form__container {
-	padding-bottom: 39px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border-bottom: 1px solid #e8e8e8;
 	text-align: center;
 }
 
@@ -54,13 +52,19 @@
     cursor: pointer;
 }
 
+.search-form__button_disabled {
+	background: #f4f4f4;
+  	color: #c2c2c2;
+  	cursor: auto;
+}
+
 @media screen and (max-width: 768px) {
 	.search-form {
 		padding-right: 3.9%;
 		padding-left: 3.9%;
 	}
 
-    .search-form__container {
+	.search-form__container {
         padding-bottom: 0;
     }
 

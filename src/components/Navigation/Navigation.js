@@ -21,7 +21,7 @@ function Navigation() {
                         Главная
                     </NavLink>
                     <NavLink
-                        to="movies"
+                        to="/movies"
                         className={`navigation__link navigation__link_films ${
                             pathname === "/movies" ? "navigation__link_selected" : ""
                           }`}
@@ -29,7 +29,7 @@ function Navigation() {
                         Фильмы
                     </NavLink>
                     <NavLink
-                        to="saved-movies"
+                        to="/saved-movies"
                         className={`navigation__link ${
                             pathname === "/saved-movies" ? "navigation__link_selected" : ""
                           }`}

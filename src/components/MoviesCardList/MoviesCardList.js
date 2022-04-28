@@ -1,37 +1,40 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
-import Preloader from '../Preloader/Preloader';
+import { useLocation } from "react-router-dom";
 
 
-function MoviesCardList({isLoading}) {
+const MoviesCardList = ({
+    children,
+    movies,
+    loadMovies,
+    countMovies,
+    checked,
+    checkMovies,
+    isLoading
+  }) => {
+    const { pathname } = useLocation();
     return (
-        <section className="movies-cardlist">
-            {isLoading ? <Preloader/>
-                : (
+        <section
+        className={`movies-cardlist ${
+            isLoading || (checkMovies && !movies?.length) ? "movies-cardlist_search-result" : ""
+          }`}>
                     <ul className="movies-cardlist__list">
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
-                        <MoviesCard/>
+                        {children}
                     </ul>
-                )}
+            {pathname === "/movies" &&
+                !isLoading &&
+                 !!movies?.length &&
+                    countMovies < movies?.length &&
+                    !checked ? (
+                    <button className="movies-cardlist__button" type="button" onClick={loadMovies}>
+                        Ещё
+                    </button>
+                ) : (
+                    ""
+            )}
         </section>
 
     );
 }
-
-MoviesCardList.propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-};
 
 export default MoviesCardList;
