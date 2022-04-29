@@ -1,16 +1,15 @@
 import React, { createRef, useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
-import { useError } from "../../hooks/useError";
 import FieldErrorText from "../FieldErrorText/FieldErrorText";
 import "./Profile.css";
 
-const Profile = ({ onLogout, onUpdateUser, globalError, isLoading }) => {
+const Profile = ({ onLogout, onUpdateUser, isLoading }) => {
   const { email, name } = useContext(CurrentUserContext);
   const ref = createRef();
-  const errorApi = useError(globalError);
   const [isEditing, setIsEditing] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidName, setIsValidName] = useState(false);
   const {
     values,
     handleChange,
@@ -60,6 +59,16 @@ const Profile = ({ onLogout, onUpdateUser, globalError, isLoading }) => {
     }
   };
 
+  const validName = (event) => {
+    const re =
+    /^([^0-9]*)$/;
+    if (re.test(event.target.value)) {
+      setIsValidName(false);
+    } else {
+      setIsValidName(true);
+    }
+  }
+
   return (
     <section className="profile page__profile">
       <h2 className="profile__title">Привет, {name}!</h2>
@@ -80,11 +89,22 @@ const Profile = ({ onLogout, onUpdateUser, globalError, isLoading }) => {
               minLength="2"
               maxLength="30"
               value={values.name || ""}
-              onChange={handleChange}
+              onChange={(event) => {
+                handleChange(event);
+                validName(event);
+            }}
               required
               disabled={isLoading || !isEditing}
             />
           </label>
+          <FieldErrorText err="input-err">{errors.name || ""}</FieldErrorText>
+          {isEditing &&
+            <FieldErrorText err="err-auth">
+                {isValidName
+                  ? "Имя пользователя должно содержать только буквы."
+                  : ""}
+            </FieldErrorText>
+          }
           <label className="profile__label">
             E-mail
             <input
@@ -104,8 +124,10 @@ const Profile = ({ onLogout, onUpdateUser, globalError, isLoading }) => {
           <FieldErrorText err="err-auth">{errors.email || ""}</FieldErrorText>
           {isEditing ? (
             <>
-              <FieldErrorText err="profile-err">
-                {errorApi || ""}
+              <FieldErrorText err="err-auth">
+                {isValidEmail
+                  ? "E-mail должен быть в формате 'example@mail.com'."
+                  : ""}
               </FieldErrorText>
               <button
                 type="submit"
@@ -113,6 +135,7 @@ const Profile = ({ onLogout, onUpdateUser, globalError, isLoading }) => {
                   !isLoading &&
                   isValid &&
                   !isValidEmail &&
+                  !isValidName &&
                   !(values.email === email && values.name === name)
                     ? ""
                     : "profile__save_disabled"

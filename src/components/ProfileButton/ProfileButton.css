@@ -24,3 +24,15 @@
     transition: .5s;
     color: #000;
   }
+
+  .profile-btn__main {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.14;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: .5s;
+    color: #fff;
+  }

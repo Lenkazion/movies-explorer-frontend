@@ -23,6 +23,7 @@ const AuthForm = forwardRef(
     ref
   ) => {
     const [isValidEmail, setIsValidEmail] = useState(false);
+    const [isValidName, setIsValidName] = useState(false);
     const handleChange = (e) => {
       onChange(e);
     };
@@ -35,6 +36,16 @@ const AuthForm = forwardRef(
         setIsValidEmail(true);
       }
     };
+
+    const validName = (e) => {
+      const re =
+      /^([^0-9]*)$/;
+      if (re.test(e.target.value)) {
+        setIsValidName(false);
+      } else {
+        setIsValidName(true);
+      }
+    }
 
   return (
     <section className="auth page__auth">
@@ -61,13 +72,21 @@ const AuthForm = forwardRef(
                 className="auth__input"
                 minLength="2"
                 maxLength="30"
-                onChange={handleChange}
+                onChange={(e) => {
+                  handleChange(e);
+                  validName(e);
+                }}
                 value={userName || ""}
                 disabled={isLoading}
                 required
               />
             </label>
             <FieldErrorText err="err-auth">{errors.name || ""}</FieldErrorText>
+            <FieldErrorText err="err-auth">
+                {isValidName
+                  ? "Имя пользователя должно содержать только буквы."
+                  : ""}
+            </FieldErrorText>
             </div>
           ) : null}
           <div className="auth__label-container">
@@ -89,6 +108,11 @@ const AuthForm = forwardRef(
             />
           </label>
           <FieldErrorText err="err-auth">{errors.email || ""}</FieldErrorText>
+          <FieldErrorText err="err-auth">
+              {isValidEmail
+                ? "E-mail должен быть в формате 'example@mail.com'."
+                : ""}
+          </FieldErrorText>
           </div>
           
           <div className="auth__label-container">
@@ -99,6 +123,8 @@ const AuthForm = forwardRef(
               id="password"
               name="password"
               placeholder="Введите ваш пароль"
+              minLength="5"
+              maxLength="30"
               className="auth__input last"
               onChange={handleChange}
               value={userPassword || ""}
