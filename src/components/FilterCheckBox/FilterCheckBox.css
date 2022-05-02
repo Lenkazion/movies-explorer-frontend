@@ -1,7 +1,13 @@
 .filter-checkbox {
+    width: 89%;
     box-sizing: border-box;
     display: flex;
     margin: 0 auto;
+    padding: 0px 5.5% 39px 5.5%;
+    justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid #e8e8e8;
+	text-align: center;
 }
 
 .filter-checkbox__switch {
@@ -64,15 +70,18 @@
 
 @media screen and (max-width: 768px) {
     .filter-checkbox {
-        padding: 0px 19px 26px;
+        padding-right: 3.9%;
+		padding-left: 3.9%;
+        padding-bottom: 26px;
     }
 }
 
 @media screen and (max-width: 320px) {
     .filter-checkbox {
         justify-content: center;
-        padding-top: 0px;
-        padding-bottom: 44px;
+        padding-right: 4.4%;
+		padding-left: 4.4%;
+        padding-bottom: 26px;
     }
 
     .filter-checkbox__title {

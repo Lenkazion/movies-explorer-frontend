@@ -18,6 +18,15 @@
     row-gap: 32px;
 }
 
+.movies-cardlist_search-result {
+    display: flex;
+    align-items: center;
+    grid-template-columns: none;
+    grid-template-rows:none;
+    grid-gap: 0 0;
+    margin-bottom: 80px;
+  }
+
 .movies-cardlist__button {
     display: block;
     width: 360px;
@@ -38,7 +47,7 @@
     transition: .5s linear;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
     .movies-cardlist {
         padding: 68px 30px 0;
     }

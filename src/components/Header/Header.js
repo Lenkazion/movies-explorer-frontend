@@ -1,14 +1,14 @@
 import React from "react";
-import { Link, useMatch } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './Header.css';
 import logo from "../../images/header-logo.svg";
 import Navigation from "../Navigation/Navigation";
 
-function Header(props) {
-    const isMain = useMatch({path: '/', exact: true});
+function Header({ logged }) {
+    const { pathname } = useLocation();
     return (
     <>
-            {isMain ? (
+            {!logged && (
                     <header className="header landing__header">
                         <Link to="/" className="header__link">
                             <img src={logo} alt="Логотип" className="header__logo" />
@@ -23,13 +23,22 @@ function Header(props) {
                             </Link>
                         </div>
                     </header>
-            ) : (
-                    <header className="header main__header">
+            )}
+            {logged && pathname === "/" && (
+                    <header className="header landing__header">
                         <Link to="/" className="header__link">
                             <img src={logo} alt="Логотип" className="header__logo" />
                         </Link>
                         <Navigation />
                     </header>
+            )}
+            {logged && (pathname === "/movies" || pathname === "/saved-movies" || pathname === "/profile") && (
+                <header className="header main__header">
+                <Link to="/" className="header__link">
+                    <img src={logo} alt="Логотип" className="header__logo" />
+                </Link>
+                <Navigation />
+            </header>
             )}
         </>
     );

@@ -66,7 +66,6 @@
     width: 100%;
     background: #F9F9F9;
     border-radius: 8px;
-    margin-bottom: 24px;
   }
 
   .auth__input:focus {
@@ -75,6 +74,22 @@
   
   .last {
     margin-bottom: 0;
+  }
+  
+  .auth__button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .auth__label-container {
+    align-items: flex-start;
+  }
+  
+  .auth__label-container:not(:last-child) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
   }
   
   .auth__submit-btn {
@@ -95,6 +110,12 @@
     width: 100%;
     cursor: pointer;
     transition: 0.5s;
+  }
+
+  .auth__submit-btn_disabled {
+    background: #f4f4f4;
+    color: #c2c2c2;
+    cursor: auto;
   }
   
   .auth__text {

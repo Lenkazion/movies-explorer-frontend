@@ -21,18 +21,22 @@ function Navigation() {
                         Главная
                     </NavLink>
                     <NavLink
-                        to="movies"
-                        className={`navigation__link navigation__link_films ${
+                        to="/movies"
+                        className={`${
+                            pathname === "/" && !isMenuOpen ? "navigation__link_main" : "navigation__link"}
+                            navigation__link_films ${
                             pathname === "/movies" ? "navigation__link_selected" : ""
-                          }`}
+                        }`}
                     >
                         Фильмы
                     </NavLink>
                     <NavLink
-                        to="saved-movies"
-                        className={`navigation__link ${
+                        to="/saved-movies"
+                        className={`${
+                            pathname === "/" && !isMenuOpen ? "navigation__link_main" : "navigation__link"}
+                            navigation__link_films ${
                             pathname === "/saved-movies" ? "navigation__link_selected" : ""
-                          }`}
+                        }`}
                     >
                         Сохраненные фильмы
                     </NavLink>
@@ -43,7 +47,7 @@ function Navigation() {
                 type="button"
                 onClick={toggleMenu}
                 aria-label="toggleMenu"
-                className={`navigation__button ${isMenuOpen ? 'navigation__button_type_close' : ''}`}
+                className={`${ pathname === "/" ? "navigation__button_main" : "navigation__button"} ${isMenuOpen ? 'navigation__button_type_close' : ''}`}
             />
 
             <div
